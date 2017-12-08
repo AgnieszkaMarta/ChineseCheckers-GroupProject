@@ -1,54 +1,76 @@
 package Main;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
+import javax.swing.*;
 
-public class Client extends Thread{
+public class Client extends Thread
+{
 
     private BufferedReader in;
     private PrintWriter out;
     private JFrame frame = new JFrame("Client");
     private JTextField dataField = new JTextField(40);
     private JTextArea messageArea = new JTextArea(8, 60);
+    private GUI gui;
     String response;
+    String nick;
+    String serverAddress;
 
-    public Client() {
+    public Client()
+    {
 
-        // Layout GUI
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //frame.setPreferredSize(600, 300);
-        frame.pack();
-        frame.setVisible(true);
-        messageArea.setEditable(false);
-        frame.getContentPane().add(dataField, "North");
-        frame.getContentPane().add(new JScrollPane(messageArea), "Center");
+        try
+        {
+            serverAddress = JOptionPane.showInputDialog(
+                    frame,
+                    "Enter IP Address of the Server:",
+                    "Chinese Checkers",
+                    JOptionPane.QUESTION_MESSAGE);
 
-        // Add Listeners
-        dataField.addActionListener(new ActionListener()
+            // Make connection and initialize streams
+            Socket socket = new Socket(serverAddress, 6969);
+            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            out = new PrintWriter(socket.getOutputStream(), true);
+
+            do
+            {
+                nick = JOptionPane.showInputDialog(
+                        frame,
+                        "Enter Your username:",
+                        "Chinese Checkers",
+                        JOptionPane.QUESTION_MESSAGE);
+                if(nick.length()!=0)
+                {
+                    out.println(nick);
+                }
+            }
+            while(nick.length()==0);
+
+            gui = new GUI(in, out);
+
+            for (int i = 0; i < 3; i++) {
+                gui.chat.messageArea.append(in.readLine() + "\n");
+            }
+
+        }
+
+        catch (IOException e)
         {
 
-            public void actionPerformed(ActionEvent e)
-            {
-                out.println(dataField.getText());
-                dataField.selectAll();
-                dataField.setText("");
-            }
-        });
+        }
 
     }
+
+
     @Override
     public void run()
     {
+
+
         while(true)
         {
             try
@@ -60,29 +82,14 @@ public class Client extends Thread{
             } catch (IOException ex) {
                 response = "Error: " + ex;
             }
-            messageArea.append(response + "\n");
+            System.out.println(response);
+            gui.chat.messageArea.append(response + "\n");
+
         }
     }
 
-    public void connectToServer() throws IOException {
-
-        // Get the server address from a dialog box.
-        String serverAddress = JOptionPane.showInputDialog(
-                frame,
-                "Enter IP Address of the Server:",
-                "Welcome to the Client",
-                JOptionPane.QUESTION_MESSAGE);
-
-        // Make connection and initialize streams
-        Socket socket = new Socket(serverAddress, 6969);
-        in = new BufferedReader(
-                new InputStreamReader(socket.getInputStream()));
-        out = new PrintWriter(socket.getOutputStream(), true);
-
-        // Consume the initial welcoming messages from the server
-        for (int i = 0; i < 3; i++) {
-            messageArea.append(in.readLine() + "\n");
-        }
+    public String getNick()
+    {
+        return nick;
     }
-
 }
