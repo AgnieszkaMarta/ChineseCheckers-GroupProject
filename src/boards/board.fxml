@@ -20,7 +20,7 @@
 <?import javafx.scene.shape.Polyline?>
 
 
-<fx:root type="SplitPane" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Board">
+<SplitPane  xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="boards.boardController">
    <items>
       <VBox prefHeight="400.0" prefWidth="640.0">
         <children>
@@ -647,7 +647,7 @@
                   </Circle>
                   <ScrollPane hbarPolicy="NEVER" layoutX="450.0" layoutY="8.0" vbarPolicy="ALWAYS">
                      <content>
-                        <SubScene height="357.0" width="162.0">
+                        <SubScene fx:id="sub" height="357.0" width="162.0">
                           <root>
                             <Region />
                           </root>
@@ -659,4 +659,4 @@
         </children>
       </VBox>
    </items>
-</fx:root>
+</SplitPane>

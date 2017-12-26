@@ -7,6 +7,8 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import javax.swing.*;
 
+import javafx.application.Application;
+
 public class Client extends Thread
 {
 
@@ -49,11 +51,10 @@ public class Client extends Thread
                 }
             }
             while(nick.length()==0);
-
-            gui = new GUI(in, out);
+            Application.launch(GUI.class);
 
             for (int i = 0; i < 3; i++) {
-                gui.chat.messageArea.append(in.readLine() + "\n");
+               // gui.chat.messageArea.append(in.readLine() + "\n");
             }
 
         }
@@ -83,7 +84,7 @@ public class Client extends Thread
                 response = "Error: " + ex;
             }
             System.out.println(response);
-            gui.chat.messageArea.append(response + "\n");
+            //gui.chat.messageArea.append(response + "\n");
 
         }
     }
