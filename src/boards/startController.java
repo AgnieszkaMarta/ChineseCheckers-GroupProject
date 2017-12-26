@@ -18,7 +18,7 @@ public class startController
     	((Node)(e.getSource())).getScene().getWindow().hide();
         
          try {
-        	 Parent root = FXMLLoader.load(getClass().getResource("/boards/board.fxml"));
+        	 Parent root = FXMLLoader.load(getClass().getResource("/boards/serverCheck.fxml"));
         	 
         	 Stage stage = new Stage();
         	 stage.setTitle("Chinese Checker");
