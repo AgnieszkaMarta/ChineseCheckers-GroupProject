@@ -25,7 +25,7 @@ public class Client extends Thread
     public Client()
     {
 
-        try
+        /*try
         {
             serverAddress = JOptionPane.showInputDialog(
                     frame,
@@ -51,7 +51,7 @@ public class Client extends Thread
                 }
             }
             while(nick.length()==0);
-            Application.launch(GUI.class);
+
 
             for (int i = 0; i < 3; i++) {
                // gui.chat.messageArea.append(in.readLine() + "\n");
@@ -62,7 +62,11 @@ public class Client extends Thread
         catch (IOException e)
         {
 
-        }
+        }*/
+
+        Application.launch(GUI.class);
+
+
 
     }
 

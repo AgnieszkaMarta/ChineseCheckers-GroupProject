@@ -17,6 +17,6 @@ public class boardController
 	@FXML
 	public void initialize(URL location, ResourceBundle resources) {
 		Label newLabel = new Label("Hello! " );
-		sub.add(newLabel);
+		//sub.add(newLabel);
 		}
 }

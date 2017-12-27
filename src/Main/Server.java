@@ -13,13 +13,21 @@ public class Server
 
     private static ArrayList<Player> players = new ArrayList<>();
 
+    private enum State
+    {
+        Validate_Name;
+    }
+
+    private int k=0;
+
     public static void main(String[] args) throws Exception
     {
         Player player;
         System.out.println("The server is running.");
         ServerSocket listener = new ServerSocket(6969);
         Socket client;
-        try {
+        try
+        {
             while (true)
             {
                 client = listener.accept();
@@ -38,45 +46,53 @@ public class Server
     public static class Player extends Thread
     {
         private Socket socket;
-        private int clientNumber;
-        private String nickname;
+        private int clientNumber, i;
         private BufferedReader in;
         private PrintWriter out;
-        private String input;
-        private String nick;
+        private String input, nick, nickname;
 
         public Player(Socket socket, int clientNumber)
         {
-            this.socket = socket;
-            this.clientNumber = clientNumber;
-            log("New connection with player# " + clientNumber + " at " + socket);
+            try
+            {
+                in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                out = new PrintWriter(socket.getOutputStream(), true);
+                this.socket = socket;
+                this.clientNumber = clientNumber;
+                log("New connection with player# " + clientNumber + " at " + socket);
+                nick=(in.readLine());
+                //log(nick);
+            }
+            catch(IOException e)
+            {
+                e.printStackTrace();
+            }
         }
 
         public void run()
         {
             try
             {
-                in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                out = new PrintWriter(socket.getOutputStream(), true);
+                while(validateNickname()==false)
+                {
 
-                nick=(in.readLine());
-
-
-                // Send a welcome message to the client.
-                out.println("Hello, " + nick + "!");
-                out.println("Enter exit to quit.\n---------------------------");
+                    out.println("NOT PASSED");
+                    nick=(in.readLine());
+                }
+                nickname=nick;
+                out.println("PASSED");
 
                 while (true)
                 {
                     input = in.readLine();
-                    log(input);
+                    //log(input);
 
                     if (input.equals("exit"))
                     {
                         players.remove(this);
                         break;
                     }
-                    for(int i=0; i<players.size();i++)
+                    for(i=0; i<players.size();i++)
                     {
                         players.get(i).getOut().println(nick+": "+input);
                     }
@@ -84,6 +100,7 @@ public class Server
             }
             catch (IOException e)
             {
+                players.remove(this);
                 log("Error handling client# " + clientNumber + ": " + e);
             }
             finally
@@ -103,6 +120,19 @@ public class Server
         private void log(String message)
         {
             System.out.println(message);
+        }
+
+        private boolean validateNickname()
+        {
+            for(int i=0; i<players.size();i++)
+            {
+                if(nick.equals(players.get(i).getNickname()))
+                {
+                    System.out.println(nick+" "+i);
+                    return false;
+                }
+            }
+            return true;
         }
 
         public Socket getSocket()
