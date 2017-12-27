@@ -34,7 +34,7 @@ public class startController
     @FXML
     private void handleButtonAbout(MouseEvent e3 )
     {
-    	((Node)(e3.getSource())).getScene().getWindow().hide();
+    	//((Node)(e3.getSource())).getScene().getWindow().hide();
         
          try {
         	 Parent root = FXMLLoader.load(getClass().getResource("/boards/aboutAGame.fxml"));
