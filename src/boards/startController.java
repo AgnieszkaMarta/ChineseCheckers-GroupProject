@@ -30,4 +30,23 @@ public class startController
 		}
     	
     }
+    
+    @FXML
+    private void handleButtonAbout(MouseEvent e3 )
+    {
+    	((Node)(e3.getSource())).getScene().getWindow().hide();
+        
+         try {
+        	 Parent root = FXMLLoader.load(getClass().getResource("/boards/aboutAGame.fxml"));
+        	 
+        	 Stage stage = new Stage();
+        	 stage.setTitle("Chinese Checker");
+        	 stage.setScene(new Scene(root, 704, 464));
+             stage.show();
+             
+		} catch (IOException e4) {
+			e4.printStackTrace();
+		}
+    	
+    }
 }

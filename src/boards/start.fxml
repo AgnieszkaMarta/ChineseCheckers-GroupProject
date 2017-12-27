@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<ToolBar xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<ToolBar xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="boards.startController"> 
    <items>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="421.0" prefWidth="633.0">
          <children>
@@ -19,7 +19,7 @@
                   <Font name="AR DESTINE" size="42.0" />
                </font>
             </Button>
-            <Button layoutX="256.0" layoutY="231.0" mnemonicParsing="false" text="About the game" textFill="#6b1111" />
+            <Button layoutX="256.0" layoutY="231.0" mnemonicParsing="false" onMouseClicked="#handleButtonAbout" text="About the game" textFill="#6b1111" />
             <CheckBox layoutX="21.0" layoutY="365.0" mnemonicParsing="false" text="Music" />
          </children>
          <effect>
