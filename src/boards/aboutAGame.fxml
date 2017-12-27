@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.ParallelCamera?>
+<?import javafx.scene.PerspectiveCamera?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<SplitPane xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="boards.aboutAGameController">
+   <items>
+      <VBox prefHeight="400.0" prefWidth="640.0">
+        <children>
+          <AnchorPane layoutX="-1.0" layoutY="25.0" maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+            <children>
+                  <PerspectiveCamera fieldOfView="123.7" layoutX="84.0" layoutY="231.0" />
+                  <ParallelCamera layoutX="6.0" layoutY="38.0" />
+                  <Label layoutX="201.0" layoutY="11.0" prefHeight="55.0" prefWidth="271.0" text="About the game" textAlignment="CENTER" textFill="#a12b2b" textOverrun="LEADING_ELLIPSIS">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <ScrollPane layoutX="27.0" layoutY="68.0">
+                     <content>
+                        <Label alignment="TOP_LEFT" prefHeight="284.0" prefWidth="581.0" text="Chinese checkers (US and Canadian spelling) or Chinese chequers (UK spelling) is a strategy board game of German origin (named &quot;Sternhalma&quot;) which can be played by two, three, four, or six people, playing individually or with partners. The game is a modern and simplified variant of the American game Halma.&#10;&#10;RULES&#10;The aim is to race all one's pieces into the star corner on the opposite side of the board before opponents do the same. The destination corner is called home. Each player has 10 pieces, except in games between two players when 15 are used.[8] (On bigger star boards, 15 or 21 pieces are used.[9])&#10;&#10;In &quot;hop across&quot;, the most popular variation, each player starts with their colored pieces on one of the six points or corners of the star and attempts to race them all home into the opposite corner. Players take turns moving a single piece, either by moving one step in any direction to an adjacent empty space, or by jumping in one or any number of available consecutive hops over other single pieces. A player may not combine hopping with a single-step move – a move consists of one or the other. There is no capturing in Chinese Checkers, so hopped pieces remain active and in play. Turns proceed clockwise around the board.[4]&#10;&#10;In the diagram, Green might move the topmost piece one space diagonally forward as shown. A hop consists of jumping over a single adjacent piece, either one's own or an opponent's, to the empty space directly beyond it in the same line of direction. Red might advance the indicated piece by a chain of three hops in a single move. It is not mandatory to make the most number of hops possible. (In some instances a player may choose to stop the jumping sequence part way in order to impede the opponent's progress, or to align pieces for planned future moves.)&#10;&#10;SOURCE&#10;&#10;https://en.wikipedia.org/wiki/Chinese_checkers" textFill="#a12b2b" textOverrun="LEADING_ELLIPSIS" wrapText="true">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
+                        </Label>
+                     </content>
+                  </ScrollPane>
+            </children>
+          </AnchorPane>
+        </children>
+      </VBox>
+   </items>
+</SplitPane>
