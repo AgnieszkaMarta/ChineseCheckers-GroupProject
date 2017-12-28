@@ -21,6 +21,7 @@ public class boardController implements Initializable
 	private BufferedReader in;
 	private PrintWriter out;
 	private Chat chat;
+	private String message;
 
 	@FXML
 	private TextField field;
@@ -31,7 +32,9 @@ public class boardController implements Initializable
 	@FXML
 	private void sendMessage(ActionEvent event)
 	{
-		out.println(field.getText());
+		message=field.getText();
+		if(!message.equals(""))
+		out.println(message);
 		field.setText("");
 	}
 
