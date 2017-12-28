@@ -83,7 +83,7 @@ public class serverCheckController
 					boardController controller = new boardController(in, out);
 					root.setController(controller);
 					window.setTitle("Chinese Checker");
-					window.setScene(new Scene(root.load(), 640, 371));
+					window.setScene(new Scene(root.load(), 1117, 691));
 					window.show();
 
 				}

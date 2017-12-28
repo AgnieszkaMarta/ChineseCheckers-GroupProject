@@ -7,7 +7,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class Client extends Thread
+public class Client
 {
 
     private BufferedReader in;
@@ -66,29 +66,6 @@ public class Client extends Thread
 
 
 
-    }
-
-
-    @Override
-    public void run()
-    {
-
-
-        while(true)
-        {
-            try
-            {
-                response = in.readLine();
-                if (response == null || response.equals("")) {
-                    System.exit(0);
-                }
-            } catch (IOException ex) {
-                response = "Error: " + ex;
-            }
-            System.out.println(response);
-            //gui.chat.messageArea.append(response + "\n");
-
-        }
     }
 
     public String getNick()
