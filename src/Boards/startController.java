@@ -43,7 +43,7 @@ public class startController
         
          try
 		 {
-        	 Parent root = FXMLLoader.load(getClass().getResource("/boards/aboutAGame.fxml"));
+        	 Parent root = FXMLLoader.load(getClass().getResource("/Boards/aboutAGame.fxml"));
         	 
         	 Stage stage = new Stage();
         	 stage.setTitle("Chinese Checker");
