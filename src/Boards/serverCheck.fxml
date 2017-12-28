@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<ToolBar xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Boards.serverCheckController">
+   <items>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <Button layoutX="413.0" layoutY="265.0" mnemonicParsing="false" onMouseClicked="#handleButtonNext" text="Next" textFill="#a12b2b">
+               <font>
+                  <Font name="AR DESTINE" size="42.0" />
+               </font>
+            </Button>
+            <Button layoutX="106.0" layoutY="265.0" mnemonicParsing="false" onMouseClicked="#handleButtonBack" prefHeight="31.0" prefWidth="106.0" text="Back" textFill="#6b1111" />
+            <CheckBox layoutX="21.0" layoutY="365.0" mnemonicParsing="false" text="Music" />
+            <Label layoutX="178.0" layoutY="30.0" prefHeight="45.0" text="Enter your username:" textAlignment="CENTER" textFill="#a12b2b" textOverrun="LEADING_ELLIPSIS" AnchorPane.leftAnchor="161.0" AnchorPane.rightAnchor="161.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="161.0" layoutY="135.0" prefHeight="45.0" text="Enter IP Address of the Server:" textAlignment="CENTER" textFill="#a12b2b" textOverrun="LEADING_ELLIPSIS" AnchorPane.leftAnchor="161.0" AnchorPane.rightAnchor="161.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="username" layoutX="178.0" layoutY="75.0" prefHeight="25.0" prefWidth="278.0" AnchorPane.leftAnchor="161.0" AnchorPane.rightAnchor="161.0" />
+            <TextField fx:id="ip" layoutX="143.0" layoutY="180.0" prefHeight="25.0" prefWidth="278.0" AnchorPane.leftAnchor="161.0" AnchorPane.rightAnchor="161.0" />
+         </children>
+         <effect>
+            <ColorAdjust brightness="0.02">
+               <input>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow color="#cd1a1a" height="74.37" radius="50.77" width="130.71" />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </input>
+            </ColorAdjust>
+         </effect>
+      </AnchorPane>
+   </items>
+</ToolBar>

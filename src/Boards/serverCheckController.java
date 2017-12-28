@@ -1,4 +1,4 @@
-package boards;
+package Boards;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,13 +8,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class startController
+public class serverCheckController
 {
 	private Stage window;
 	private String nick, serverAddress, test;
@@ -31,16 +32,31 @@ public class startController
 	private TextField username;
 
 	@FXML
-	private void handleIPLabel()
+	private void handleButtonBack(MouseEvent event)
 	{
 
+		window = ((Stage) (((Button) event.getSource()).getScene().getWindow()));
+
+		try
+		{
+			Parent root = FXMLLoader.load(getClass().getResource("/Boards/start.fxml"));
+
+			window.setTitle("Chinese Checker");
+			window.setScene(new Scene(root, 614, 412));
+			window.show();
+
+		}
+		catch (IOException exception)
+		{
+			exception.printStackTrace();
+		}
 	}
 
-    @FXML
-    private void handleButtonPlay(MouseEvent event)
-    {
-    	serverAddress=ip.getText();
-    	nick=username.getText();
+	@FXML
+	private void handleButtonNext(MouseEvent event)
+	{
+		serverAddress=ip.getText();
+		nick=username.getText();
 
 		if(nick.length()!=0 && serverAddress.length()!=0)
 		{
@@ -63,10 +79,11 @@ public class startController
 
 				try
 				{
-					Parent root = FXMLLoader.load(getClass().getResource("/boards/board.fxml"));
-
+					FXMLLoader root = new FXMLLoader(getClass().getResource("/Boards/board.fxml"));
+					boardController controller = new boardController(in, out);
+					root.setController(controller);
 					window.setTitle("Chinese Checker");
-					window.setScene(new Scene(root, 600, 400));
+					window.setScene(new Scene(root.load(), 640, 371));
 					window.show();
 
 				}
@@ -88,10 +105,10 @@ public class startController
 		{
 			ip.setText("Incorrect server address.");
 		}
-    	
-    }
 
-    private boolean validateNick()
+	}
+
+	private boolean validateNick()
 	{
 		try
 		{

@@ -1,13 +1,11 @@
 package Main;
 
+import javafx.application.Application;
+
+import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.Socket;
-import javax.swing.*;
-
-import javafx.application.Application;
 
 public class Client extends Thread
 {

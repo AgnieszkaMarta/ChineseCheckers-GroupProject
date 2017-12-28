@@ -22,8 +22,8 @@ public class GUI extends Application
     public void start(Stage primaryStage) throws Exception
     {
         window = primaryStage;
-        root = FXMLLoader.load(getClass().getResource("/boards/start.fxml"));
-        startScene = new Scene(root, 704, 464);
+        root = FXMLLoader.load(getClass().getResource("/Boards/start.fxml"));
+        startScene = new Scene(root, 614, 412);
         window.setTitle("Chinese Checker");
         window.setScene(startScene);
         window.show();
