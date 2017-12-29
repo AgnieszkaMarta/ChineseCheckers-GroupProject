@@ -3,11 +3,17 @@ package Boards;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
+import javafx.stage.Window;
+import javafx.scene.Node;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,10 +24,12 @@ public class boardController implements Initializable
 {
 	//public SubScene sub;
 	private Circle firstCircle, secondCircle, clickedCircle, helpCircle;
+	private Color counterColor;
 	private BufferedReader in;
 	private PrintWriter out;
 	private Chat chat;
 	private String message;
+	private Stage window;
 
 	@FXML
 	private TextField field;
@@ -77,14 +85,26 @@ public class boardController implements Initializable
 		else
 		{
 			secondCircle=clickedCircle;
+			counterColor = (Color) clickedCircle.getFill();
 			//firstCircle.setStroke(Color.BLACK);
 			//firstCircle.setStrokeWidth(1);
-			firstCircle.setFill(clickedCircle.getFill());
+			//secondCircle.setStroke(Color.BLACK);
+			secondCircle.setFill(firstCircle.getFill());
+			firstCircle.setFill(counterColor);
+			
+			
 			//secondCircle.setFill();
 		}
 
 		System.out.println(firstCircle.getLayoutX()+" "+firstCircle.getLayoutY());
 	}
+	
+	/*@FXML
+	private void handleButtonExit(ActionEvent exit)
+	{
+		window = ((Stage) (((MenuItem) exit.getSource()).getScene().getWindow()));
+		window.hide();
+	}*/
 
 	public BufferedReader getIn()
 	{
