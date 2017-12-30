@@ -1,6 +1,7 @@
 package Boards;
 
 import javafx.event.ActionEvent;
+import java.lang.Math;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -18,18 +19,43 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.EventObject;
 import java.util.ResourceBundle;
+
+import Main.Server.Player;
 
 public class boardController implements Initializable
 {
-	//public SubScene sub;
-	private Circle firstCircle, secondCircle, clickedCircle, helpCircle;
-	private Color counterColor;
+	
+	private static volatile boardController instance = null;
+	private Circle firstCircle, secondCircle, clickedCircle;
+	private Color counterColor, boardColor;
 	private BufferedReader in;
 	private PrintWriter out;
 	private Chat chat;
-	private String message;
-	private Stage window;
+	private String message, nick="";
+	private double fX, fY, sX, sY, length;
+	
+	//boardColor=Color.valueOf("ffe91f")
+	
+	protected boardController() {};
+	
+	public static boardController getInstance() {
+        if (instance == null) {
+            synchronized (boardController.class) {
+                if (instance == null) {
+                    instance = new boardController();
+                }
+            }
+        }
+        return instance;
+    }
+	
+	public static void resetInstance() {
+		instance = null;
+
+	}
 
 	@FXML
 	private TextField field;
@@ -45,12 +71,15 @@ public class boardController implements Initializable
 		out.println(message);
 		field.setText("");
 	}
+	
+	public void setNick(String nick){
+		this.nick=nick;
+	}
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb)
 	{
-
-		//area.appendText("Hehe");
+		area.appendText(nick);
 		area.setEditable(false);
 		field.setText("");
 		chat = new Chat();
@@ -70,11 +99,14 @@ public class boardController implements Initializable
 
 		if(firstCircle==null)
 		{
+			
 			firstCircle=clickedCircle;
 			firstCircle = (Circle)event.getSource();
 			//firstCircle.setFill(Color.WHITE);
 			firstCircle.setStroke(Color.GREEN);
 			firstCircle.setStrokeWidth(3);
+			fX=firstCircle.getLayoutX();
+			fY=firstCircle.getLayoutY();
 		}
 		else if(clickedCircle.equals(firstCircle))
 		{
@@ -83,27 +115,37 @@ public class boardController implements Initializable
 			firstCircle=null;
 		}
 		else
-		{
-			secondCircle=clickedCircle;
-			counterColor = (Color) clickedCircle.getFill();
-			//firstCircle.setStroke(Color.BLACK);
-			//firstCircle.setStrokeWidth(1);
-			//secondCircle.setStroke(Color.BLACK);
-			secondCircle.setFill(firstCircle.getFill());
-			firstCircle.setFill(counterColor);
-			
+		{	
+			sX=clickedCircle.getLayoutX();
+			sY=clickedCircle.getLayoutY();
+			length=Math.sqrt(Math.pow(sX-fX,2)+Math.pow(sY-fY,2));
+			if(length<=40) {
+				secondCircle=clickedCircle;
+				counterColor = (Color) clickedCircle.getFill();
+				
+				//secondCircle.setStroke(Color.BLACK);
+				secondCircle.setFill(firstCircle.getFill());
+				firstCircle.setFill(counterColor);
+				firstCircle.setStroke(Color.BLACK);
+				firstCircle.setStrokeWidth(1);
+				firstCircle=null;
+			}
+			else
+			{
+				System.out.println("This move is not possible");
+				firstCircle.setStroke(Color.BLACK);
+				firstCircle.setStrokeWidth(1);
+				firstCircle=null;
+			}
 			
 			//secondCircle.setFill();
 		}
-
-		System.out.println(firstCircle.getLayoutX()+" "+firstCircle.getLayoutY());
 	}
 	
 	/*@FXML
-	private void handleButtonExit(ActionEvent exit)
+	private void handleButtonExit(ActionEvent ex)
 	{
-		window = ((Stage) (((MenuItem) exit.getSource()).getScene().getWindow()));
-		window.hide();
+		//((Node)(ex.getSource())).getScene().getWindow().hide();
 	}*/
 
 	public BufferedReader getIn()

@@ -5,10 +5,6 @@
 <?import javafx.scene.PerspectiveCamera?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
@@ -29,37 +25,9 @@
    <items>
       <VBox prefHeight="400.0" prefWidth="640.0">
         <children>
-          <MenuBar VBox.vgrow="NEVER">
-            <menus>
-              <Menu mnemonicParsing="false" text="File">
-                <items>
-                  <MenuItem mnemonicParsing="false" text="New game" />
-                  <MenuItem mnemonicParsing="false" text="Save" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Open existing game" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Continue" />
-                  <MenuItem mnemonicParsing="false"  text="Exit" />
-                </items>
-              </Menu>
-              <Menu mnemonicParsing="false" text="Settings">
-                <items>
-                  <MenuItem mnemonicParsing="false" text="Music" />
-                  <MenuItem mnemonicParsing="false" text="Color" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Number of players" />
-                </items>
-              </Menu>
-              <Menu mnemonicParsing="false" text="Help">
-                <items>
-                  <MenuItem mnemonicParsing="false" text="About the game" />
-                </items>
-              </Menu>
-            </menus>
-          </MenuBar>
           <AnchorPane layoutX="-1.0" layoutY="25.0" maxHeight="-1.0" maxWidth="-1.0" prefHeight="508.0" prefWidth="917.0" VBox.vgrow="ALWAYS">
             <children>
-                  <Polyline cache="true" fill="#f50000" layoutX="146.0" layoutY="230.0" opacity="0.18" rotate="59.0" scaleY="0.8" strokeType="INSIDE">
+                  <Polyline cache="true" fill="#f50000" layoutX="206.0" layoutY="430.0" opacity="0.18" rotate="59.0" scaleX="1.5" scaleY="1.3" strokeType="INSIDE">
                      <points>
                         <Double fx:value="-50.0" />
                         <Double fx:value="-40.0" />
@@ -71,7 +39,7 @@
                         <Double fx:value="-40.0" />
                      </points>
                   </Polyline>
-                  <Polyline cache="true" fill="BLACK" layoutX="238.0" layoutY="67.0" opacity="0.18" rotate="180.0" scaleY="0.8" strokeType="INSIDE">
+                  <Polyline cache="true" fill="BLACK" layoutX="355.0" layoutY="158.0" opacity="0.18" rotate="180.0" scaleX="1.5" scaleY="1.3" strokeType="INSIDE">
                      <points>
                         <Double fx:value="-50.0" />
                         <Double fx:value="-40.0" />
@@ -83,7 +51,7 @@
                         <Double fx:value="-40.0" />
                      </points>
                   </Polyline>
-                  <Polyline cache="true" fill="#f5d000" layoutX="332.0" layoutY="230.0" opacity="0.18" rotate="-59.0" scaleY="0.81" strokeType="INSIDE">
+                  <Polyline cache="true" fill="#f5d000" layoutX="509.0" layoutY="430.0" opacity="0.18" rotate="-59.0" scaleX="1.5" scaleY="1.3" strokeType="INSIDE">
                      <points>
                         <Double fx:value="-50.0" />
                         <Double fx:value="-40.0" />
@@ -95,7 +63,7 @@
                         <Double fx:value="-40.0" />
                      </points>
                   </Polyline>
-                  <Polyline fill="WHITE" layoutX="157.0" layoutY="140.0" opacity="0.18" scaleY="0.8" strokeType="INSIDE">
+                  <Polyline fill="WHITE" layoutX="223.0" layoutY="282.0" opacity="0.18" scaleX="1.5" scaleY="1.3" strokeType="INSIDE">
                      <points>
                         <Double fx:value="-50.0" />
                         <Double fx:value="-40.0" />
@@ -107,7 +75,7 @@
                         <Double fx:value="-40.0" />
                      </points>
                   </Polyline>
-                  <Polyline fill="#18da73" layoutX="322.0" layoutY="140.0" opacity="0.18" scaleY="0.8" strokeType="INSIDE">
+                  <Polyline fill="#18da73" layoutX="491.0" layoutY="282.0" opacity="0.18" scaleX="1.5" scaleY="1.3" strokeType="INSIDE">
                      <points>
                         <Double fx:value="-50.0" />
                         <Double fx:value="-40.0" />
@@ -119,7 +87,7 @@
                         <Double fx:value="-40.0" />
                      </points>
                   </Polyline>
-                  <Polyline fill="#00cbff" layoutX="238.0" layoutY="284.0" opacity="0.18" scaleY="0.8" strokeType="INSIDE">
+                  <Polyline fill="#00cbff" layoutX="355.0" layoutY="518.0" opacity="0.18" scaleX="1.5" scaleY="1.3" strokeType="INSIDE">
                     <points>
                       <Double fx:value="-50.0" />
                       <Double fx:value="-40.0" />
@@ -131,79 +99,79 @@
                       <Double fx:value="-40.0" />
                     </points>
                   </Polyline>
-                  <Circle fill="DODGERBLUE" layoutX="237.0" layoutY="61.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="DODGERBLUE" layoutX="228.0" layoutY="77.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="DODGERBLUE" layoutX="246.0" layoutY="77.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="DODGERBLUE" layoutX="237.0" layoutY="93.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="DODGERBLUE" layoutX="219.0" layoutY="93.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="DODGERBLUE" layoutX="255.0" layoutY="93.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="DODGERBLUE" layoutX="229.0" layoutY="109.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="DODGERBLUE" layoutX="211.0" layoutY="109.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="DODGERBLUE" layoutX="247.0" layoutY="109.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="DODGERBLUE" layoutX="265.0" layoutY="109.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="221.0" layoutY="125.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="239.0" layoutY="125.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="257.0" layoutY="125.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="275.0" layoutY="125.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="204.0" layoutY="125.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="212.0" layoutY="140.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="230.0" layoutY="140.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="248.0" layoutY="140.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="266.0" layoutY="140.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="284.0" layoutY="140.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="195.0" layoutY="140.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="204.0" layoutY="156.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="221.0" layoutY="156.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="187.0" layoutY="156.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="256.0" layoutY="156.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="239.0" layoutY="156.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="DODGERBLUE" layoutX="355.0" layoutY="143.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="DODGERBLUE" layoutX="341.0" layoutY="169.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="DODGERBLUE" layoutX="369.0" layoutY="169.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="DODGERBLUE" layoutX="355.0" layoutY="195.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="DODGERBLUE" layoutX="327.0" layoutY="195.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="DODGERBLUE" layoutX="384.0" layoutY="195.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="DODGERBLUE" layoutX="342.0" layoutY="221.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="DODGERBLUE" layoutX="313.0" layoutY="221.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="DODGERBLUE" layoutX="370.0" layoutY="221.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="DODGERBLUE" layoutX="399.0" layoutY="221.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="329.0" layoutY="247.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="358.0" layoutY="247.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="387.0" layoutY="247.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="415.0" layoutY="247.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="300.0" layoutY="247.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="314.0" layoutY="273.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="343.0" layoutY="273.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="373.0" layoutY="273.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="401.0" layoutY="273.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="429.0" layoutY="273.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="285.0" layoutY="273.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="302.0" layoutY="299.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="330.0" layoutY="299.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="273.0" layoutY="299.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="387.0" layoutY="299.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="359.0" layoutY="299.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
                   <PerspectiveCamera fieldOfView="123.7" layoutX="84.0" layoutY="231.0" />
                   <ParallelCamera layoutX="6.0" layoutY="38.0" />
-                  <Circle fill="#ffe91f52" layoutX="195.0" layoutY="171.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="212.0" layoutY="171.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="178.0" layoutY="171.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="247.0" layoutY="171.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="229.0" layoutY="171.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="274.0" layoutY="156.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="264.0" layoutY="171.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="282.0" layoutY="171.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="292.0" layoutY="156.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="300.0" layoutY="171.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="186.0" layoutY="186.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="203.0" layoutY="186.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="238.0" layoutY="186.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="169.0" layoutY="186.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="220.0" layoutY="186.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="255.0" layoutY="186.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="273.0" layoutY="186.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="291.0" layoutY="186.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="308.0" layoutY="186.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="195.0" layoutY="201.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="212.0" layoutY="201.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="247.0" layoutY="201.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="178.0" layoutY="201.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="229.0" layoutY="201.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="264.0" layoutY="201.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="282.0" layoutY="201.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="300.0" layoutY="201.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="204.0" layoutY="216.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="222.0" layoutY="216.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="239.0" layoutY="216.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="257.0" layoutY="216.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="275.0" layoutY="216.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="212.0" layoutY="231.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="187.0" layoutY="216.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="230.0" layoutY="231.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="248.0" layoutY="231.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="266.0" layoutY="231.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="284.0" layoutY="231.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="292.0" layoutY="216.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="195.0" layoutY="231.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="221.0" layoutY="246.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="239.0" layoutY="246.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="257.0" layoutY="246.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffe91f52" layoutX="275.0" layoutY="246.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle layoutX="162.0" layoutY="171.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle fill="#ffe91f52" layoutX="289.0" layoutY="325.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="317.0" layoutY="325.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="260.0" layoutY="325.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="373.0" layoutY="325.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="345.0" layoutY="325.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="415.0" layoutY="299.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="401.0" layoutY="325.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="429.0" layoutY="325.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="444.0" layoutY="299.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="458.0" layoutY="325.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="273.0" layoutY="351.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="301.0" layoutY="351.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="357.0" layoutY="351.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="245.0" layoutY="351.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="329.0" layoutY="351.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="385.0" layoutY="351.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="414.0" layoutY="351.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="443.0" layoutY="351.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="472.0" layoutY="351.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="287.0" layoutY="377.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="315.0" layoutY="377.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="371.0" layoutY="377.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="259.0" layoutY="377.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="343.0" layoutY="377.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="400.0" layoutY="377.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="429.0" layoutY="377.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="458.0" layoutY="377.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="301.0" layoutY="403.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="329.0" layoutY="403.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="357.0" layoutY="403.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="386.0" layoutY="403.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="415.0" layoutY="403.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="315.0" layoutY="427.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="273.0" layoutY="403.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="343.0" layoutY="427.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="371.0" layoutY="427.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="400.0" layoutY="427.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="429.0" layoutY="427.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="444.0" layoutY="403.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="287.0" layoutY="427.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="330.0" layoutY="453.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="358.0" layoutY="453.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="386.0" layoutY="453.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffe91f52" layoutX="415.0" layoutY="453.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle layoutX="231.0" layoutY="325.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <RadialGradient centerX="0.5444444444444444" centerY="0.4857142857142857" radius="1.0">
                            <stops>
@@ -213,8 +181,8 @@
                         </RadialGradient>
                      </fill>
                   </Circle>
-                  <Circle fill="#ffe91f52" layoutX="204.0" layoutY="246.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle layoutX="171.0" layoutY="156.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle fill="#ffe91f52" layoutX="300.0" layoutY="453.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle layoutX="244.0" layoutY="299.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <RadialGradient centerX="0.5444444444444444" centerY="0.4857142857142857" radius="1.0">
                            <stops>
@@ -224,7 +192,7 @@
                         </RadialGradient>
                      </fill>
                   </Circle>
-                  <Circle layoutX="178.0" layoutY="140.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle layoutX="256.0" layoutY="273.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <RadialGradient centerX="0.5444444444444444" centerY="0.4857142857142857" radius="1.0">
                            <stops>
@@ -234,7 +202,7 @@
                         </RadialGradient>
                      </fill>
                   </Circle>
-                  <Circle layoutX="186.0" layoutY="125.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle layoutX="270.0" layoutY="247.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <RadialGradient centerX="0.5444444444444444" centerY="0.4857142857142857" radius="1.0">
                            <stops>
@@ -244,7 +212,7 @@
                         </RadialGradient>
                      </fill>
                   </Circle>
-                  <Circle layoutX="153.0" layoutY="156.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle layoutX="216.0" layoutY="299.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <RadialGradient centerX="0.5444444444444444" centerY="0.4857142857142857" radius="1.0">
                            <stops>
@@ -254,7 +222,7 @@
                         </RadialGradient>
                      </fill>
                   </Circle>
-                  <Circle layoutX="160.0" layoutY="140.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle layoutX="227.0" layoutY="273.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <RadialGradient centerX="0.5444444444444444" centerY="0.4857142857142857" radius="1.0">
                            <stops>
@@ -264,7 +232,7 @@
                         </RadialGradient>
                      </fill>
                   </Circle>
-                  <Circle layoutX="143.0" layoutY="140.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle layoutX="200.0" layoutY="273.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <RadialGradient centerX="0.5444444444444444" centerY="0.4857142857142857" radius="1.0">
                            <stops>
@@ -274,7 +242,7 @@
                         </RadialGradient>
                      </fill>
                   </Circle>
-                  <Circle layoutX="152.0" layoutY="125.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle layoutX="212.0" layoutY="247.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <RadialGradient centerX="0.5444444444444444" centerY="0.4857142857142857" radius="1.0">
                            <stops>
@@ -284,7 +252,7 @@
                         </RadialGradient>
                      </fill>
                   </Circle>
-                  <Circle layoutX="169.0" layoutY="125.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle layoutX="241.0" layoutY="247.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <RadialGradient centerX="0.5444444444444444" centerY="0.4857142857142857" radius="1.0">
                            <stops>
@@ -294,7 +262,7 @@
                         </RadialGradient>
                      </fill>
                   </Circle>
-                  <Circle layoutX="134.0" layoutY="125.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle layoutX="184.0" layoutY="247.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <RadialGradient centerX="0.5444444444444444" centerY="0.4857142857142857" radius="1.0">
                            <stops>
@@ -304,7 +272,7 @@
                         </RadialGradient>
                      </fill>
                   </Circle>
-                  <Circle layoutX="293.0" layoutY="125.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle layoutX="444.0" layoutY="247.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <LinearGradient endX="1.0" endY="1.0">
                            <stops>
@@ -314,7 +282,7 @@
                         </LinearGradient>
                      </fill>
                   </Circle>
-                  <Circle layoutX="310.0" layoutY="125.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle layoutX="473.0" layoutY="247.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <LinearGradient endX="1.0" endY="1.0">
                            <stops>
@@ -324,7 +292,7 @@
                         </LinearGradient>
                      </fill>
                   </Circle>
-                  <Circle layoutX="327.0" layoutY="125.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle layoutX="502.0" layoutY="247.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <LinearGradient endX="1.0" endY="1.0">
                            <stops>
@@ -334,7 +302,7 @@
                         </LinearGradient>
                      </fill>
                   </Circle>
-                  <Circle layoutX="344.0" layoutY="125.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle layoutX="531.0" layoutY="247.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <LinearGradient endX="1.0" endY="1.0">
                            <stops>
@@ -344,13 +312,13 @@
                         </LinearGradient>
                      </fill>
                   </Circle>
-                  <Circle fill="#fa0400" layoutX="301.0" layoutY="140.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#fa0400" layoutX="318.0" layoutY="140.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#fa0400" layoutX="336.0" layoutY="140.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#fa0400" layoutX="310.0" layoutY="156.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#fa0400" layoutX="327.0" layoutY="156.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#fa0400" layoutX="317.0" layoutY="171.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle layoutX="152.0" layoutY="246.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle fill="#fa0400" layoutX="458.0" layoutY="273.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#fa0400" layoutX="488.0" layoutY="273.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#fa0400" layoutX="517.0" layoutY="273.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#fa0400" layoutX="473.0" layoutY="299.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#fa0400" layoutX="502.0" layoutY="299.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#fa0400" layoutX="487.0" layoutY="325.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle layoutX="214.0" layoutY="453.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <RadialGradient centerX="1.0" centerY="1.0" radius="1.0">
                            <stops>
@@ -360,7 +328,7 @@
                         </RadialGradient>
                      </fill>
                   </Circle>
-                  <Circle layoutX="169.0" layoutY="246.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle layoutX="243.0" layoutY="453.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <RadialGradient centerX="1.0" centerY="1.0" radius="1.0">
                            <stops>
@@ -370,7 +338,7 @@
                         </RadialGradient>
                      </fill>
                   </Circle>
-                  <Circle layoutX="186.0" layoutY="246.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle layoutX="272.0" layoutY="453.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <LinearGradient endX="1.0" endY="1.0">
                            <stops>
@@ -380,7 +348,7 @@
                         </LinearGradient>
                      </fill>
                   </Circle>
-                  <Circle layoutX="134.0" layoutY="245.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle layoutX="184.0" layoutY="452.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <RadialGradient centerX="1.0" centerY="1.0" radius="1.0">
                            <stops>
@@ -390,7 +358,7 @@
                         </RadialGradient>
                      </fill>
                   </Circle>
-                  <Circle layoutX="143.0" layoutY="231.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle layoutX="200.0" layoutY="427.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <RadialGradient centerX="1.0" centerY="1.0" radius="1.0">
                            <stops>
@@ -400,7 +368,7 @@
                         </RadialGradient>
                      </fill>
                   </Circle>
-                  <Circle layoutX="160.0" layoutY="231.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle layoutX="230.0" layoutY="427.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <RadialGradient centerX="1.0" centerY="1.0" radius="1.0">
                            <stops>
@@ -410,7 +378,7 @@
                         </RadialGradient>
                      </fill>
                   </Circle>
-                  <Circle layoutX="178.0" layoutY="231.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle layoutX="259.0" layoutY="427.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <RadialGradient centerX="1.0" centerY="1.0" radius="1.0">
                            <stops>
@@ -420,7 +388,7 @@
                         </RadialGradient>
                      </fill>
                   </Circle>
-                  <Circle layoutX="153.0" layoutY="216.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle layoutX="216.0" layoutY="403.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <RadialGradient centerX="1.0" centerY="1.0" radius="1.0">
                            <stops>
@@ -430,7 +398,7 @@
                         </RadialGradient>
                      </fill>
                   </Circle>
-                  <Circle layoutX="171.0" layoutY="216.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle layoutX="245.0" layoutY="403.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <RadialGradient centerX="1.0" centerY="1.0" radius="1.0">
                            <stops>
@@ -440,7 +408,7 @@
                         </RadialGradient>
                      </fill>
                   </Circle>
-                  <Circle layoutX="162.0" layoutY="201.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle layoutX="231.0" layoutY="377.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <RadialGradient centerX="1.0" centerY="1.0" radius="1.0">
                            <stops>
@@ -450,7 +418,7 @@
                         </RadialGradient>
                      </fill>
                   </Circle>
-                  <Circle layoutX="211.0" layoutY="262.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle layoutX="313.0" layoutY="478.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <LinearGradient endX="1.0" endY="1.0">
                            <stops>
@@ -460,7 +428,7 @@
                         </LinearGradient>
                      </fill>
                   </Circle>
-                  <Circle layoutX="229.0" layoutY="262.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle layoutX="342.0" layoutY="478.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <LinearGradient endX="1.0" endY="1.0">
                            <stops>
@@ -470,7 +438,7 @@
                         </LinearGradient>
                      </fill>
                   </Circle>
-                  <Circle layoutX="247.0" layoutY="262.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle layoutX="370.0" layoutY="478.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <LinearGradient endX="1.0" endY="1.0">
                            <stops>
@@ -480,7 +448,7 @@
                         </LinearGradient>
                      </fill>
                   </Circle>
-                  <Circle layoutX="265.0" layoutY="262.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle layoutX="399.0" layoutY="478.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <LinearGradient endX="1.0" endY="1.0">
                            <stops>
@@ -490,7 +458,7 @@
                         </LinearGradient>
                      </fill>
                   </Circle>
-                  <Circle layoutX="228.0" layoutY="292.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle layoutX="341.0" layoutY="529.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <LinearGradient endX="1.0" endY="1.0">
                            <stops>
@@ -500,7 +468,7 @@
                         </LinearGradient>
                      </fill>
                   </Circle>
-                  <Circle layoutX="246.0" layoutY="292.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle layoutX="369.0" layoutY="529.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <LinearGradient endX="1.0" endY="1.0">
                            <stops>
@@ -510,7 +478,7 @@
                         </LinearGradient>
                      </fill>
                   </Circle>
-                  <Circle layoutX="237.0" layoutY="307.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle layoutX="355.0" layoutY="554.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <LinearGradient endX="1.0" endY="1.0">
                            <stops>
@@ -520,7 +488,7 @@
                         </LinearGradient>
                      </fill>
                   </Circle>
-                  <Circle layoutX="219.0" layoutY="277.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle layoutX="327.0" layoutY="503.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <LinearGradient endX="1.0" endY="1.0">
                            <stops>
@@ -530,7 +498,7 @@
                         </LinearGradient>
                      </fill>
                   </Circle>
-                  <Circle layoutX="237.0" layoutY="277.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle layoutX="355.0" layoutY="503.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <LinearGradient endX="1.0" endY="1.0">
                            <stops>
@@ -540,7 +508,7 @@
                         </LinearGradient>
                      </fill>
                   </Circle>
-                  <Circle layoutX="255.0" layoutY="277.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle layoutX="384.0" layoutY="503.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <LinearGradient endX="1.0" endY="1.0">
                            <stops>
@@ -550,7 +518,7 @@
                         </LinearGradient>
                      </fill>
                   </Circle>
-                  <Circle layoutX="327.0" layoutY="246.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle layoutX="502.0" layoutY="453.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <RadialGradient centerX="1.0" focusAngle="-149.04" radius="0.08139534883720934">
                            <stops>
@@ -560,7 +528,7 @@
                         </RadialGradient>
                      </fill>
                   </Circle>
-                  <Circle layoutX="293.0" layoutY="246.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle layoutX="444.0" layoutY="453.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <RadialGradient centerX="1.0" focusAngle="-149.04" radius="0.08139534883720934">
                            <stops>
@@ -570,7 +538,7 @@
                         </RadialGradient>
                      </fill>
                   </Circle>
-                  <Circle layoutX="301.0" layoutY="231.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle layoutX="458.0" layoutY="427.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <RadialGradient centerX="1.0" focusAngle="-149.04" radius="0.08139534883720934">
                            <stops>
@@ -580,7 +548,7 @@
                         </RadialGradient>
                      </fill>
                   </Circle>
-                  <Circle layoutX="336.0" layoutY="231.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle layoutX="517.0" layoutY="427.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <RadialGradient centerX="1.0" focusAngle="-149.04" radius="0.08139534883720934">
                            <stops>
@@ -590,7 +558,7 @@
                         </RadialGradient>
                      </fill>
                   </Circle>
-                  <Circle layoutX="317.0" layoutY="201.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle layoutX="487.0" layoutY="377.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <RadialGradient centerX="1.0" focusAngle="-149.04" radius="0.08139534883720934">
                            <stops>
@@ -600,7 +568,7 @@
                         </RadialGradient>
                      </fill>
                   </Circle>
-                  <Circle layoutX="310.0" layoutY="216.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle layoutX="473.0" layoutY="403.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <RadialGradient centerX="1.0" focusAngle="-149.04" radius="0.08139534883720934">
                            <stops>
@@ -610,7 +578,7 @@
                         </RadialGradient>
                      </fill>
                   </Circle>
-                  <Circle layoutX="310.0" layoutY="246.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle layoutX="473.0" layoutY="453.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <RadialGradient centerX="1.0" focusAngle="-149.04" radius="0.08139534883720934">
                            <stops>
@@ -620,7 +588,7 @@
                         </RadialGradient>
                      </fill>
                   </Circle>
-                  <Circle layoutX="344.0" layoutY="246.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle layoutX="531.0" layoutY="453.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <RadialGradient centerX="1.0" focusAngle="-149.04" radius="0.08139534883720934">
                            <stops>
@@ -630,7 +598,7 @@
                         </RadialGradient>
                      </fill>
                   </Circle>
-                  <Circle layoutX="327.0" layoutY="216.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle layoutX="502.0" layoutY="403.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <RadialGradient centerX="1.0" focusAngle="-149.04" radius="0.08139534883720934">
                            <stops>
@@ -640,7 +608,7 @@
                         </RadialGradient>
                      </fill>
                   </Circle>
-                  <Circle layoutX="318.0" layoutY="231.0" onMouseClicked="#handleCheckers" radius="9.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle layoutX="488.0" layoutY="427.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE">
                      <fill>
                         <RadialGradient centerX="1.0" focusAngle="-149.04" radius="0.08139534883720934">
                            <stops>
