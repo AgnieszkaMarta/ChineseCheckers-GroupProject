@@ -16,10 +16,12 @@ public class startController
 	private Stage window;
 
 	@FXML
+	private Button play, about;
+
+	@FXML
     private void handleButtonPlay(MouseEvent event)
     {
 		window = ((Stage) (((Button) event.getSource()).getScene().getWindow()));
-
 		try
 		{
 			Parent root = FXMLLoader.load(getClass().getResource("/Boards/serverCheck.fxml"));
@@ -57,4 +59,12 @@ public class startController
 		}
     	
     }
+
+	public Button getAbout() {
+		return about;
+	}
+
+	public Button getPlay() {
+		return play;
+	}
 }

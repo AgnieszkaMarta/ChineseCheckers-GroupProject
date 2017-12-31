@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.Double?>
-<?import javafx.scene.ParallelCamera?>
-<?import javafx.scene.PerspectiveCamera?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
@@ -13,19 +11,20 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.RadialGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.shape.Polyline?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
-
+<?import javafx.scene.shape.Circle?>
+<?import java.util.ArrayList?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.paint.LinearGradient?>
 <SplitPane dividerPositions="0.7, 1.0" prefHeight="691.0" prefWidth="1017.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
    <items>
       <VBox prefHeight="400.0" prefWidth="640.0">
         <children>
-          <AnchorPane layoutX="-1.0" layoutY="25.0" maxHeight="-1.0" maxWidth="-1.0" prefHeight="508.0" prefWidth="917.0" VBox.vgrow="ALWAYS">
+          <AnchorPane fx:id="game" layoutX="-1.0" layoutY="25.0" maxHeight="-1.0" maxWidth="-1.0" prefHeight="508.0" prefWidth="917.0" VBox.vgrow="ALWAYS">
             <children>
                   <Polyline cache="true" fill="#f50000" layoutX="206.0" layoutY="430.0" opacity="0.18" rotate="59.0" scaleX="1.5" scaleY="1.3" strokeType="INSIDE">
                      <points>
@@ -99,7 +98,9 @@
                       <Double fx:value="-40.0" />
                     </points>
                   </Polyline>
-                  <Circle fill="DODGERBLUE" layoutX="355.0" layoutY="143.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                <fx:define>
+                <ArrayList fx:id="circleArrayList">
+                <Circle fill="DODGERBLUE" layoutX="355.0" layoutY="143.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
                   <Circle fill="DODGERBLUE" layoutX="341.0" layoutY="169.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
                   <Circle fill="DODGERBLUE" layoutX="369.0" layoutY="169.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
                   <Circle fill="DODGERBLUE" layoutX="355.0" layoutY="195.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
@@ -125,8 +126,6 @@
                   <Circle fill="#ffe91f52" layoutX="273.0" layoutY="299.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
                   <Circle fill="#ffe91f52" layoutX="387.0" layoutY="299.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
                   <Circle fill="#ffe91f52" layoutX="359.0" layoutY="299.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
-                  <PerspectiveCamera fieldOfView="123.7" layoutX="84.0" layoutY="231.0" />
-                  <ParallelCamera layoutX="6.0" layoutY="38.0" />
                   <Circle fill="#ffe91f52" layoutX="289.0" layoutY="325.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
                   <Circle fill="#ffe91f52" layoutX="317.0" layoutY="325.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
                   <Circle fill="#ffe91f52" layoutX="260.0" layoutY="325.0" onMouseClicked="#handleCheckers" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
@@ -618,6 +617,15 @@
                         </RadialGradient>
                      </fill>
                   </Circle>
+                </ArrayList>
+                </fx:define>
+                  <Rectangle fx:id="rectangleReady" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="38.0" layoutX="252.0" layoutY="57.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" width="218.0" />
+                  <Label fx:id="labelReady" layoutX="259.0" layoutY="67.0" prefHeight="19.0" prefWidth="137.0" text="Players ready: 0/6">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="readyButton" layoutX="396.0" layoutY="63.0" mnemonicParsing="false" onMouseClicked="#setReady" prefHeight="25.0" prefWidth="65.0" text="Ready" />
             </children>
           </AnchorPane>
         </children>
@@ -646,6 +654,16 @@
                            </font>
                         </Label>
                         <Button layoutX="23.0" layoutY="34.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="100.0" text="Player #1" />
+                        <Polygon fx:id="polygon1" layoutX="14.0" layoutY="63.0" rotate="90.0" scaleX="0.15" scaleY="0.15" stroke="BLACK" strokeType="INSIDE">
+                          <points>
+                            <Double fx:value="-50.0" />
+                            <Double fx:value="40.0" />
+                            <Double fx:value="50.0" />
+                            <Double fx:value="40.0" />
+                            <Double fx:value="0.0" />
+                            <Double fx:value="-60.0" />
+                          </points>
+                        </Polygon>
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
@@ -658,6 +676,16 @@
                            </font>
                         </Label>
                         <Button layoutX="23.0" layoutY="34.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="100.0" text="Player #2" />
+                        <Polygon fx:id="polygon2" layoutX="14.0" layoutY="63.0" rotate="90.0" scaleX="0.15" scaleY="0.15" stroke="BLACK" strokeType="INSIDE">
+                           <points>
+                              <Double fx:value="-50.0" />
+                              <Double fx:value="40.0" />
+                              <Double fx:value="50.0" />
+                              <Double fx:value="40.0" />
+                              <Double fx:value="0.0" />
+                              <Double fx:value="-60.0" />
+                           </points>
+                        </Polygon>
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
@@ -670,18 +698,38 @@
                            </font>
                         </Label>
                         <Button layoutX="23.0" layoutY="34.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="100.0" text="Player #3" />
+                        <Polygon fx:id="polygon3" layoutX="14.0" layoutY="63.0" rotate="90.0" scaleX="0.15" scaleY="0.15" stroke="BLACK" strokeType="INSIDE">
+                           <points>
+                              <Double fx:value="-50.0" />
+                              <Double fx:value="40.0" />
+                              <Double fx:value="50.0" />
+                              <Double fx:value="40.0" />
+                              <Double fx:value="0.0" />
+                              <Double fx:value="-60.0" />
+                           </points>
+                        </Polygon>
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" height="15.0" layoutX="20.0" layoutY="19.0" stroke="BLACK" strokeType="INSIDE" width="100.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="23.0" />
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b24c4c" height="10.0" layoutX="29.0" layoutY="22.0" stroke="BLACK" strokeType="INSIDE" width="10.0" AnchorPane.leftAnchor="29.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#6b3131" height="10.0" layoutX="29.0" layoutY="22.0" stroke="BLACK" strokeType="INSIDE" width="10.0" AnchorPane.leftAnchor="29.0" />
                         <Label layoutX="39.0" layoutY="20.0" text="Player #4" textFill="WHITE">
                            <font>
                               <Font size="10.0" />
                            </font>
                         </Label>
                         <Button layoutX="23.0" layoutY="34.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="100.0" text="Player #4" />
+                        <Polygon fx:id="polygon4" layoutX="14.0" layoutY="63.0" rotate="90.0" scaleX="0.15" scaleY="0.15" stroke="BLACK" strokeType="INSIDE">
+                           <points>
+                              <Double fx:value="-50.0" />
+                              <Double fx:value="40.0" />
+                              <Double fx:value="50.0" />
+                              <Double fx:value="40.0" />
+                              <Double fx:value="0.0" />
+                              <Double fx:value="-60.0" />
+                           </points>
+                        </Polygon>
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
@@ -694,6 +742,16 @@
                            </font>
                         </Label>
                         <Button layoutX="23.0" layoutY="34.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="100.0" text="Player #5" />
+                        <Polygon fx:id="polygon5" layoutX="14.0" layoutY="63.0" rotate="90.0" scaleX="0.15" scaleY="0.15" stroke="BLACK" strokeType="INSIDE">
+                           <points>
+                              <Double fx:value="-50.0" />
+                              <Double fx:value="40.0" />
+                              <Double fx:value="50.0" />
+                              <Double fx:value="40.0" />
+                              <Double fx:value="0.0" />
+                              <Double fx:value="-60.0" />
+                           </points>
+                        </Polygon>
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -706,6 +764,16 @@
                            </font>
                         </Label>
                         <Button layoutX="23.0" layoutY="34.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="100.0" text="Player #6" />
+                        <Polygon fx:id="polygon6" layoutX="14.0" layoutY="63.0" rotate="90.0" scaleX="0.15" scaleY="0.15" stroke="BLACK" strokeType="INSIDE">
+                           <points>
+                              <Double fx:value="-50.0" />
+                              <Double fx:value="40.0" />
+                              <Double fx:value="50.0" />
+                              <Double fx:value="40.0" />
+                              <Double fx:value="0.0" />
+                              <Double fx:value="-60.0" />
+                           </points>
+                        </Polygon>
                      </children>
                   </AnchorPane>
                </children>

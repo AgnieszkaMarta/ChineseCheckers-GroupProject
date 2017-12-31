@@ -28,9 +28,4 @@ public class GUI extends Application
         window.setScene(startScene);
         window.show();
     }
-
-    public Stage getWindow()
-    {
-        return window;
-    }
 }

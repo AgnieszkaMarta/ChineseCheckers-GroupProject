@@ -1,24 +1,19 @@
 package Main;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import Boards.ClientStatus;
+import javafx.scene.layout.AnchorPane;
+
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Server
 {
-
     private static ArrayList<Player> players = new ArrayList<>();
 
-    private enum State
-    {
-        Validate_Name;
-    }
-
-    private int k=0;
+    private static int randomClient;
 
     public static void main(String[] args) throws Exception
     {
@@ -49,19 +44,26 @@ public class Server
         private int clientNumber, i;
         private BufferedReader in;
         private PrintWriter out;
-        private String input, nick, nickname;
+        private String nick, nickname, input;
+        public ClientStatus state;
+        private Player player;
+        Random generator;
 
         public Player(Socket socket, int clientNumber)
         {
             try
             {
-                in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 out = new PrintWriter(socket.getOutputStream(), true);
+                in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                generator = new Random();
+                System.out.println(in);
+                System.out.println(out);
                 this.socket = socket;
                 this.clientNumber = clientNumber;
+                state = ClientStatus.UNREADY;
                 log("New connection with player# " + clientNumber + " at " + socket);
-                nick=(in.readLine());
-                //log(nick);
+                nick=in.readLine();
+                log(nick);
             }
             catch(IOException e)
             {
@@ -76,26 +78,64 @@ public class Server
                 while(validateNickname()==false)
                 {
 
-                    out.println("NOT PASSED");
-                    nick=(in.readLine());
+                    //out.println("NOT PASSED");
+                    nick=in.readLine();
                 }
                 nickname=nick;
                 out.println("PASSED");
-
                 while (true)
                 {
                     input = in.readLine();
                     //log(input);
-
+                    //pane=in.read();
+                    System.out.println(input);
                     if (input.equals("exit"))
                     {
                         players.remove(this);
                         break;
                     }
-                    for(i=0; i<players.size();i++)
+                    else if(input.substring(0,7).equals("MESSAGE"))
                     {
-                        players.get(i).getOut().println(nick+": "+input);
+                        input=input.substring(7);
+                        for(i=0; i<players.size();i++)
+                        {
+                            players.get(i).getOut().println("MESSAGE"+nick+": "+input);
+                        }
                     }
+                    else if(input.substring(0,5).equals("STATE"))
+                    {
+                        input=input.substring(5);
+                        switch (input)
+                        {
+                            case "READY":
+                                state = ClientStatus.READY;
+                                if(checkReady()==true)
+                                {
+                                    startGame();
+                                }
+                                break;
+
+                        }
+                    }
+                    else if(input.substring(0,4).equals("MOVE"))
+                    {
+                        input=input.substring(4);
+                        switch (input)
+                        {
+                            case "DONE":
+                                state=ClientStatus.UNTURN;
+                                randomClient=(randomClient+1)%(players.size());
+                                player=players.get(randomClient);
+                                player.state=ClientStatus.TURN;
+                                player.getOut().println("STATE"+player.state);
+                                break;
+                            default:
+                                sendMove();
+                                break;
+                        }
+
+                    }
+
                 }
             }
             catch (IOException e)
@@ -122,9 +162,46 @@ public class Server
             System.out.println(message);
         }
 
+        private boolean checkReady()
+        {
+            for(i=0; i<players.size();i++)
+            {
+                if(!players.get(i).getClientState().equals(ClientStatus.READY))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private void startGame()
+        {
+            randomClient = generator.nextInt(players.size());
+            for(i=0; i<players.size(); i++)
+            {
+                player=players.get(i);
+                player.state=ClientStatus.UNTURN;
+                player.out.println("STATEGAMESTARTED");
+                player.out.println("STATE"+player.getClientState());
+            }
+            players.get(randomClient).getOut().println("STATE"+ClientStatus.TURN);
+        }
+
+        private void sendMove()
+        {
+            for(i=0; i<players.size(); i++)
+            {
+                player=players.get(i);
+                if(!player.equals(this))
+                {
+                    player.getOut().println("MOVE"+input);
+                }
+            }
+        }
+
         private boolean validateNickname()
         {
-            for(int i=0; i<players.size();i++)
+            for(i=0; i<players.size();i++)
             {
                 if(nick.equals(players.get(i).getNickname()))
                 {
@@ -143,6 +220,11 @@ public class Server
         public int getClientNumber()
         {
             return clientNumber;
+        }
+
+        public ClientStatus getClientState()
+        {
+            return state;
         }
 
         public String getNickname()
