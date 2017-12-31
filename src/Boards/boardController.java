@@ -26,23 +26,40 @@ import java.util.EventObject;
 import java.util.ResourceBundle;
 import Main.Server.Player;
 
+import static javafx.scene.paint.Color.*;
+
 public class boardController implements Initializable
 {
 	private ClientStatus state;
 	private static volatile boardController instance = null;
 	private Circle firstCircle, secondCircle, clickedCircle;
-	private Color counterColor, boardColor;
+	private Color counterColor, boardColor, playerColor, clickedColor;
 	private RadialGradient counterColor1;
 	private LinearGradient counterColor2;
 	private BufferedReader in;
 	private PrintWriter out;
 	private Communicate communicate;
-	private String message, nick="";
+	private String message, nick="", clientNumber;
 	private double fX, fY, sX, sY, length;
 	int i, fi, si;
 	boolean executed;
-	
-	//boardColor=Color.valueOf("ffe91f")
+	ArrayList<Color> colorArrayList;
+
+	boardController(BufferedReader in, PrintWriter out) throws IOException
+	{
+		this.in=in;
+		this.out=out;
+		clientNumber = in.readLine();
+		state = ClientStatus.UNREADY;
+		colorArrayList = new ArrayList<>();
+		colorArrayList.add(DODGERBLUE);
+		colorArrayList.add(BROWN);
+		colorArrayList.add(RED);
+		colorArrayList.add(GREEN);
+		colorArrayList.add(WHITE);
+		colorArrayList.add(YELLOW);
+		playerColor = colorArrayList.get(Integer.parseInt(clientNumber)-1);
+	}
 	
 	protected boardController() {};
 	
@@ -69,6 +86,12 @@ public class boardController implements Initializable
 	private ArrayList<Circle> circleArrayList;
 
 	@FXML
+	private ArrayList<Label> labelArrayList;
+
+	@FXML
+	private ArrayList<Rectangle> rectangleArrayList;
+
+	@FXML
 	private TextField field;
 
 	@FXML
@@ -85,10 +108,10 @@ public class boardController implements Initializable
 	}
 
 	@FXML
-	private Label labelReady;
+	private Label labelReady, label1, label2, label3, label4, label5, label6;
 
 	@FXML
-	private Rectangle rectangleReady;
+	private Rectangle rectangleReady, rectangle1, rectangle2, rectangle3, rectangle4, rectangle5, rectangle6;
 
 	@FXML
 	private Polygon polygon1, polygon2, polygon3, polygon4, polygon5, polygon6;
@@ -100,10 +123,6 @@ public class boardController implements Initializable
 		if(!message.equals(""))
 		out.println("MESSAGE"+message);
 		field.setText("");
-	}
-	
-	public void setNick(String nick){
-		this.nick=nick;
 	}
 
 	@Override
@@ -125,23 +144,17 @@ public class boardController implements Initializable
 		{
 			game.getChildren().add(circleArrayList.get(i));
 		}
-	}
-
-	boardController(BufferedReader in, PrintWriter out)
-	{
-		this.in=in;
-		this.out=out;
-		state = ClientStatus.UNREADY;
+		boardColor=(Color)circleArrayList.get(10).getFill();
 	}
 
 	@FXML
 	private void handleCheckers(MouseEvent event)
 	{
+		clickedCircle = (Circle) event.getSource();
+		clickedColor = (Color)clickedCircle.getFill();
 		if(state.equals(ClientStatus.TURN))
 		{
-			clickedCircle = (Circle) event.getSource();
-
-			if (firstCircle == null) {
+			if (firstCircle == null  && clickedColor.equals(playerColor)) {
 
 				firstCircle = clickedCircle;
 				firstCircle = (Circle) event.getSource();
@@ -154,7 +167,7 @@ public class boardController implements Initializable
 				firstCircle.setStroke(Color.BLACK);
 				firstCircle.setStrokeWidth(1);
 				firstCircle = null;
-			} else {
+			} else if(clickedColor.equals(boardColor)){
 				sX = clickedCircle.getLayoutX();
 				sY = clickedCircle.getLayoutY();
 				length = Math.sqrt(Math.pow(sX - fX, 2) + Math.pow(sY - fY, 2));
@@ -191,6 +204,10 @@ public class boardController implements Initializable
 	{
 		//((Node)(ex.getSource())).getScene().getWindow().hide();
 	}*/
+
+	public void setNick(String nick){
+		this.nick=nick;
+	}
 
 	public BufferedReader getIn()
 	{

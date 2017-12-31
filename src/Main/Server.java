@@ -83,6 +83,7 @@ public class Server
                 }
                 nickname=nick;
                 out.println("PASSED");
+                out.println(players.size());
                 while (true)
                 {
                     input = in.readLine();
