@@ -2,22 +2,26 @@ package Main;
 
 import Boards.ClientStatus;
 import javafx.scene.layout.AnchorPane;
-
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Random;
+import static Boards.ClientStatus.*;
 
 public class Server
 {
-    private static ArrayList<Player> players = new ArrayList<>();
-
-    private static int randomClient;
+    private static ArrayList<Player> players;
+    private static ArrayList<Bot> bots;
+    private static int randomClient, clientsReady=0, realPlayers;
+    private static Bot bot;
 
     public static void main(String[] args) throws Exception
     {
         Player player;
+        players = new ArrayList<>();
+        bots = new ArrayList<>();
+        bot = new Bot();
         System.out.println("The server is running.");
         ServerSocket listener = new ServerSocket(6969);
         Socket client;
@@ -41,15 +45,16 @@ public class Server
     public static class Player extends Thread
     {
         private Socket socket;
-        private int clientNumber, i;
+        private int clientNumber, i, j;
         private BufferedReader in;
         private PrintWriter out;
         private String nick, nickname, input;
-        public ClientStatus state;
+        private ClientStatus state;
         private Player player;
-        Random generator;
+        private Random generator;
+        private Boolean passed;
 
-        public Player(Socket socket, int clientNumber)
+        Player(Socket socket, int clientNumber)
         {
             try
             {
@@ -60,7 +65,7 @@ public class Server
                 System.out.println(out);
                 this.socket = socket;
                 this.clientNumber = clientNumber;
-                state = ClientStatus.UNREADY;
+                setState(UNREADY);
                 log("New connection with player# " + clientNumber + " at " + socket);
                 nick=in.readLine();
                 log(nick);
@@ -77,66 +82,86 @@ public class Server
             {
                 while(validateNickname()==false)
                 {
-
-                    //out.println("NOT PASSED");
-                    nick=in.readLine();
-                }
-                nickname=nick;
-                out.println("PASSED");
-                out.println(players.size());
-                while (true)
-                {
-                    input = in.readLine();
-                    //log(input);
-                    //pane=in.read();
-                    System.out.println(input);
-                    if (input.equals("exit"))
+                    out.println("not passed");
+                    input=in.readLine();
+                    if(input.substring(0,4).equals("NICK"))
+                    {
+                        nick=input.substring(4);
+                    }
+                    else
                     {
                         players.remove(this);
+                        passed=false;
                         break;
                     }
-                    else if(input.substring(0,7).equals("MESSAGE"))
+                }
+                if(passed==true)
+                {
+                    nickname = nick;
+                    out.println("PASSED");
+                    out.println(players.size());
+                    sendPlayers();
+                    for (i = 0; i < players.size(); i++)
                     {
-                        input=input.substring(7);
-                        for(i=0; i<players.size();i++)
-                        {
-                            players.get(i).getOut().println("MESSAGE"+nick+": "+input);
-                        }
+                        players.get(i).getOut().println("MESSAGE" + "+ " + getNickname() + " comes.");
                     }
-                    else if(input.substring(0,5).equals("STATE"))
+                    while (true)
                     {
-                        input=input.substring(5);
-                        switch (input)
+                        input = in.readLine();
+                        System.out.println(input);
+                        if (input.equals("exit"))
                         {
-                            case "READY":
-                                state = ClientStatus.READY;
-                                if(checkReady()==true)
-                                {
-                                    startGame();
-                                }
-                                break;
+                            playerExit();
+                            break;
+                        }
+                        else if (input.substring(0, 7).equals("MESSAGE"))
+                        {
+                            input = input.substring(7);
+                            for (i = 0; i < players.size(); i++)
+                            {
+                                players.get(i).getOut().println("MESSAGE" + nick + ": " + input);
+                            }
+                        }
+                        else if (input.substring(0, 5).equals("STATE"))
+                        {
+                            input = input.substring(5);
+                            switch (input)
+                            {
+                                case "READY":
+                                    setState(READY);
+                                    clientsReady++;
+                                    for (i = 0; i < players.size(); i++)
+                                    {
+                                        players.get(i).out.println("PLAYERR" + clientsReady);
+                                    }
+                                    if (checkReady() == true) {
+                                        startGame();
+                                    }
+                                    break;
+                                case "GAMEWON":
+                                    for (i = 0; i < players.size(); i++)
+                                    {
+                                        players.get(i).out.println("STATEGAMEWON" + getNickname());
+                                    }
+                                    break;
+                            }
+                        }
+                        else if (input.substring(0, 4).equals("MOVE"))
+                        {
+                            input = input.substring(4);
+                            switch (input)
+                            {
+                                case "DONE":
+                                    handleTurn();
+                                    break;
+                                default:
+                                    sendMove();
+                                    break;
+                            }
 
                         }
-                    }
-                    else if(input.substring(0,4).equals("MOVE"))
-                    {
-                        input=input.substring(4);
-                        switch (input)
-                        {
-                            case "DONE":
-                                state=ClientStatus.UNTURN;
-                                randomClient=(randomClient+1)%(players.size());
-                                player=players.get(randomClient);
-                                player.state=ClientStatus.TURN;
-                                player.getOut().println("STATE"+player.state);
-                                break;
-                            default:
-                                sendMove();
-                                break;
-                        }
 
                     }
-
                 }
             }
             catch (IOException e)
@@ -165,27 +190,52 @@ public class Server
 
         private boolean checkReady()
         {
-            for(i=0; i<players.size();i++)
+            realPlayers = players.size();
+            if(realPlayers>6)
             {
-                if(!players.get(i).getClientState().equals(ClientStatus.READY))
+                realPlayers=6;
+            }
+            for(i=0; i<realPlayers;i++)
+            {
+                if(!players.get(i).getClientState().equals(READY))
                 {
                     return false;
                 }
+                System.out.println("aktulanie: "+i+" na tyle: "+6%players.size()+" a jest tylu: "+players.size()+" "+players.get(i).getClientState());
+            }
+            for(i=0;i<players.size();i++)
+            {
+                players.get(i).out.println("PLAYERR"+clientsReady);
             }
             return true;
         }
 
         private void startGame()
         {
-            randomClient = generator.nextInt(players.size());
+            randomClient = generator.nextInt(players.size()%6);
             for(i=0; i<players.size(); i++)
             {
                 player=players.get(i);
-                player.state=ClientStatus.UNTURN;
+                player.setState(UNTURN);
                 player.out.println("STATEGAMESTARTED");
                 player.out.println("STATE"+player.getClientState());
+                player.out.println("PLAYERT"+randomClient);
             }
-            players.get(randomClient).getOut().println("STATE"+ClientStatus.TURN);
+            players.get(randomClient).getOut().println("STATE"+TURN);
+        }
+
+        private void sendPlayers()
+        {
+            for(i=0;i<players.size();i++)
+            {
+                player=players.get(i);
+                for(j=0;j<players.size();j++)
+                {
+                    player.out.println("PLAYER"+(j+1)+players.get(j).getNickname());
+                }
+                player.out.println("PLAYERS"+players.size());
+                player.out.println("PLAYERR"+clientsReady);
+            }
         }
 
         private void sendMove()
@@ -210,17 +260,47 @@ public class Server
                     return false;
                 }
             }
+            passed = true;
             return true;
         }
 
-        public Socket getSocket()
+        private void handleTurn()
         {
-            return socket;
+            setState(UNTURN);
+            randomClient=((randomClient+1)%(players.size()))%6;
+            System.out.println(randomClient);
+            player=players.get(randomClient);
+            player.setState(TURN);
+            player.getOut().println("STATE"+player.getClientState());
+            for(i=0; i<players.size(); i++)
+            {
+                player=players.get(i);
+                player.out.println("PLAYERT"+randomClient);
+            }
         }
 
-        public int getClientNumber()
+        private void playerExit()
         {
-            return clientNumber;
+            if(getClientState().equals(TURN))
+            {
+                handleTurn();
+            }
+            if(getClientState().equals(READY) || getClientState().equals(TURN) || getClientState().equals(UNTURN))
+            {
+                clientsReady--;
+            }
+            for(i=0; i<players.size();i++)
+            {
+                players.get(i).getOut().println("MESSAGE"+"- "+getNickname()+" leaves.");
+            }
+            players.remove(this);
+            //players.set(players.indexOf(this), null);
+            sendPlayers();
+        }
+
+        public void setState(ClientStatus state)
+        {
+            this.state = state;
         }
 
         public ClientStatus getClientState()
@@ -239,4 +319,8 @@ public class Server
         }
     }
 
+    /*public static class Bot() extends Thread
+    {
+
+    }*/
 }

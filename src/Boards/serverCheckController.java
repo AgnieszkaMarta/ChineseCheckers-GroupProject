@@ -37,6 +37,10 @@ public class serverCheckController
 
 		try
 		{
+			if(in != null && out != null)
+			{
+				out.println("exit");
+			}
 			Parent root = FXMLLoader.load(getClass().getResource("/Boards/start.fxml"));
 
 			window.setTitle("Chinese Checker");
@@ -66,9 +70,6 @@ public class serverCheckController
 					Socket socket = new Socket(serverAddress, 6969);
 					out = new PrintWriter(socket.getOutputStream(), true);
 					in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-					System.out.println(in);
-					System.out.println(out);
-
 				}
 			}
 			catch (IOException exception)
@@ -78,11 +79,10 @@ public class serverCheckController
 			if(validateNick()==true)
 			{
 				window = ((Stage) (((Button) event.getSource()).getScene().getWindow()));
-
 				try
 				{
 					FXMLLoader root = new FXMLLoader(getClass().getResource("/Boards/board.fxml"));
-					boardController controller = new boardController(in, out);
+					boardController controller = new boardController(in, out, window);
 					root.setController(controller);
 					window.setTitle("Chinese Checker");
 					window.setScene(new Scene(root.load(), 1117, 691));
@@ -114,13 +114,8 @@ public class serverCheckController
 	{
 		try
 		{
-			System.out.println(2);
 			out.println(nick);
-			System.out.println(2);
-
 			test=in.readLine();
-			System.out.println(2);
-			System.out.println(test);
 			if(test.equals("PASSED"))
 			{
 				return true;
