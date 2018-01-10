@@ -3,7 +3,6 @@ package Boards;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import java.lang.Math;
-
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,12 +10,10 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.LinearGradient;
-import javafx.scene.paint.RadialGradient;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
+import javafx.scene.shape.Polyline;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import java.io.BufferedReader;
@@ -25,7 +22,6 @@ import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
 import static javafx.scene.paint.Color.*;
 
 public class boardController implements Initializable
@@ -33,8 +29,6 @@ public class boardController implements Initializable
 	private ClientStatus state;
 	private Circle firstCircle, secondCircle, clickedCircle, helperCircle;
 	private Color counterColor, boardColor, playerColor, clickedColor, moveColor, helperColor;
-	private RadialGradient counterColor1;
-	private LinearGradient counterColor2;
 	private BufferedReader in;
 	private PrintWriter out;
 	private Communicate communicate;
@@ -45,7 +39,7 @@ public class boardController implements Initializable
 	private ArrayList<Color> colorArrayList;
 	private ArrayList<Polygon> polygonArrayList;
 	private ArrayList<Label> labelArrayList;
-	private ArrayList<Circle> goal;
+	private ArrayList<Circle> goal, blueCheckers, brownCheckers, redCheckers, greenCheckers, whiteCheckers, yellowCheckers;
 	private ArrayList<Rectangle> rectangleArrayList;
 	private Stage window;
 
@@ -56,7 +50,8 @@ public class boardController implements Initializable
 		this.window=window;
 		window.setOnCloseRequest(new EventHandler<WindowEvent>() {
 			@Override
-			public void handle(WindowEvent t) {
+			public void handle(WindowEvent t)
+			{
 				out.println("exit");
 				Platform.exit();
 			}
@@ -66,6 +61,13 @@ public class boardController implements Initializable
 		System.out.println(getState());
 		polygonArrayList = new ArrayList<>();
 		labelArrayList = new ArrayList<>();
+		blueCheckers = new ArrayList<>();
+		brownCheckers = new ArrayList<>();
+		redCheckers = new ArrayList<>();
+		greenCheckers = new ArrayList<>();
+		whiteCheckers = new ArrayList<>();
+		yellowCheckers = new ArrayList<>();
+
 		goal = new ArrayList<>();
 
 		clientsReady=0;
@@ -84,7 +86,7 @@ public class boardController implements Initializable
 	}
 
 	@FXML
-	private AnchorPane game, player1, player2, player3, player4, player5, player6;
+	private AnchorPane game, winner, player1, player2, player3, player4, player5, player6;
 
 	@FXML
 	private ArrayList<Circle> circleArrayList;
@@ -99,10 +101,13 @@ public class boardController implements Initializable
 	private Button readyButton;
 
 	@FXML
-	private Label labelReady, label1, label2, label3, label4, label5, label6;
+	private Polyline blueGoal, brownGoal, redGoal, greenGoal, whiteGoal, yellowGoal;
 
 	@FXML
-	private Rectangle rectangleReady, rectangle1, rectangle2, rectangle3, rectangle4, rectangle5, rectangle6;
+	private Label labelReady, labelWinner, label1, label2, label3, label4, label5, label6;
+
+	@FXML
+	private Rectangle rectangleReady, rectangleWinner, rectangle1, rectangle2, rectangle3, rectangle4, rectangle5, rectangle6;
 
 	@FXML
 	private Polygon polygon1, polygon2, polygon3, polygon4, polygon5, polygon6, polygonhelper;
@@ -124,30 +129,56 @@ public class boardController implements Initializable
 		labelArrayList.add(label5);
 		labelArrayList.add(label6);
 
+		for(i=0;i<10;i++)
+		{
+			blueCheckers.add(circleArrayList.get(i));
+		}
+		for(i=10;i<20;i++)
+		{
+			brownCheckers.add(circleArrayList.get(i));
+		}
+		for(i=20;i<30;i++)
+		{
+			redCheckers.add(circleArrayList.get(i));
+		}
+		for(i=30;i<40;i++)
+		{
+			greenCheckers.add(circleArrayList.get(i));
+		}
+		for(i=40;i<50;i++)
+		{
+			whiteCheckers.add(circleArrayList.get(i));
+		}
+		for(i=50;i<60;i++)
+		{
+			yellowCheckers.add(circleArrayList.get(i));
+		}
+
+		switch (client)
+		{
+			case 1:
+				helperColor = colorArrayList.get(1);
+				break;
+			case 2:
+				helperColor = colorArrayList.get(0);
+				break;
+			case 3:
+				helperColor = colorArrayList.get(3);
+				break;
+			case 4:
+				helperColor = colorArrayList.get(2);
+				break;
+			case 5:
+				helperColor = colorArrayList.get(5);
+				break;
+			case 6:
+				helperColor = colorArrayList.get(4);
+				break;
+		}
+
 		for(i=0;i<circleArrayList.size();i++)
 		{
 			helperCircle = circleArrayList.get(i);
-			switch (client)
-			{
-				case 1:
-					helperColor = colorArrayList.get(1);
-					break;
-				case 2:
-					helperColor = colorArrayList.get(0);
-					break;
-				case 3:
-					helperColor = colorArrayList.get(3);
-					break;
-				case 4:
-					helperColor = colorArrayList.get(2);
-					break;
-				case 5:
-					helperColor = colorArrayList.get(5);
-					break;
-				case 6:
-					helperColor = colorArrayList.get(4);
-					break;
-			}
 			if(helperCircle.getFill().equals(helperColor))
 			{
 				goal.add(helperCircle);
@@ -161,6 +192,8 @@ public class boardController implements Initializable
 
 		area.appendText(nick);
 		area.setEditable(false);
+		//winner.setVisible(false);
+		game.getChildren().remove(winner);
 		field.setText("");
 		communicate = new Communicate();
 		communicate.start();
@@ -169,6 +202,11 @@ public class boardController implements Initializable
 			game.getChildren().add(circleArrayList.get(j));
 		}
 		boardColor=(Color)circleArrayList.get(80).getFill();
+		colorArrayList.add(boardColor);
+		for(i=0;i<circleArrayList.size();i++)
+		{
+			circleArrayList.get(i).setFill(boardColor);
+		}
 	}
 
 	@FXML
@@ -289,12 +327,16 @@ public class boardController implements Initializable
 		clickedCircle=null;
 		secondCircle=null;
 		System.out.println("END. MY. TURN.");
-		if(checkWin()==true)
+		if(checkWin())
 		{
 			out.println("STATEGAMEWON");
 		}
-		out.println("MOVEDONE");
+		else
+		{
+			out.println("MOVEDONE");
+		}
 		state=ClientStatus.UNTURN;
+
 	}
 
 
@@ -360,6 +402,7 @@ public class boardController implements Initializable
 								break;
 							default:
 								response=response.substring(7);
+								announceWinner(Integer.parseInt(response.substring(0,1)));
 								break;
 
 						}
@@ -370,27 +413,33 @@ public class boardController implements Initializable
 						switch(response.substring(0,1))
 						{
 							case "1":
-								setLabel(label1, response);
+								setLabel(label1, response.substring(1));
+								setCheckers(blueGoal, blueCheckers, 0);
 								setPlayers(response.substring(0,1));
 								break;
 							case "2":
-								setLabel(label2, response);
+								setLabel(label2, response.substring(1));
+								setCheckers(brownGoal, brownCheckers, 1);
 								setPlayers(response.substring(0,1));
 								break;
 							case "3":
-								setLabel(label3, response);
+								setLabel(label3, response.substring(1));
+								setCheckers(redGoal, redCheckers, 2);
 								setPlayers(response.substring(0,1));
 								break;
 							case "4":
-								setLabel(label4, response);
+								setLabel(label4, response.substring(1));
+								setCheckers(greenGoal, greenCheckers, 3);
 								setPlayers(response.substring(0,1));
 								break;
 							case "5":
-								setLabel(label5, response);
+								setLabel(label5, response.substring(1));
+								setCheckers(whiteGoal, whiteCheckers, 4);
 								setPlayers(response.substring(0,1));
 								break;
 							case "6":
-								setLabel(label6, response);
+								setLabel(label6, response.substring(1));
+								setCheckers(yellowGoal, yellowCheckers, 5);
 								setPlayers(response.substring(0,1));
 								break;
 							case "S":
@@ -440,24 +489,9 @@ public class boardController implements Initializable
 									}
 								}
 								clickedCircle = firstCircle;
-								try
-								{
-									moveColor=(Color)firstCircle.getFill();
-								}
-								catch (ClassCastException exception)
-								{
-									try
-									{
-										counterColor1 = (RadialGradient) firstCircle.getFill();
-									}
-									catch (ClassCastException exception1)
-									{
-										counterColor2 = (LinearGradient) firstCircle.getFill();
-									}
-								}
+								moveColor=(Color)firstCircle.getFill();
 								firstCircle.setFill(secondCircle.getFill());
 								secondCircle.setFill(moveColor);
-
 								firstCircle=null;
 								secondCircle=null;
 								clickedCircle=null;
@@ -477,14 +511,11 @@ public class boardController implements Initializable
 
 	private void setLabel(Label label, String response)
 	{
-		String labelHelper;
-		labelHelper = response.substring(1);
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run()
 			{
-				label.setText(labelHelper);
-				label.setTextAlignment(TextAlignment.CENTER);
+				label.setText(response);
 			}
 		});
 	}
@@ -496,6 +527,22 @@ public class boardController implements Initializable
 			public void run()
 			{
 				labelReady.setText("Players ready: "+clientsReady+"/"+playersNumber);
+			}
+		});
+	}
+
+	private void setCheckers(Polyline polyline, ArrayList<Circle> arrayList, int number)
+	{
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run()
+			{
+				int k;
+				polyline.setFill(colorArrayList.get(number));
+				for(k=0;k<arrayList.size();k++)
+				{
+					arrayList.get(k).setFill(colorArrayList.get(number));
+				}
 			}
 		});
 	}
@@ -523,6 +570,25 @@ public class boardController implements Initializable
 		for (i=Integer.parseInt(string);i<6;i++)
 		{
 			setLabel(labelArrayList.get(i), " Player #"+(i+1));
+			switch (i)
+			{
+				case 1:
+					setCheckers(brownGoal, brownCheckers, 6);
+					break;
+				case 2:
+					setCheckers(redGoal, redCheckers, 6);
+					break;
+				case 3:
+					setCheckers(greenGoal, greenCheckers, 6);
+					break;
+				case 4:
+					setCheckers(whiteGoal, whiteCheckers, 6);
+					break;
+				case 5:
+					setCheckers(yellowGoal, yellowCheckers, 6);
+					break;
+
+			}
 		}
 	}
 
@@ -539,17 +605,27 @@ public class boardController implements Initializable
 		return true;
 	}
 
-	private void announceWinner()
+	private void announceWinner(int player)
 	{
-
+		//labelWinner.setText("Player #"+player);
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run()
+			{
+				game.getChildren().add(winner);
+				rectangleWinner.setFill(colorArrayList.get(player));
+				winner.setVisible(true);
+			}
+		});
+		setLabel(labelWinner, "Player #"+(player+1));
 	}
 
-	public ClientStatus getState()
+	private ClientStatus getState()
 	{
 		return state;
 	}
 
-	public void setState(ClientStatus state)
+	private void setState(ClientStatus state)
 	{
 		this.state = state;
 	}

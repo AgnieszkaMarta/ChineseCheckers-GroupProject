@@ -13,15 +13,9 @@ public class Client
     private BufferedReader in;
     private PrintWriter out;
     private GUI gui;
-    String nick;
 
     Client()
     {
         Application.launch(GUI.class);
-    }
-
-    public String getNick()
-    {
-        return nick;
     }
 }

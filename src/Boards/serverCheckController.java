@@ -76,7 +76,7 @@ public class serverCheckController
 			{
 				ip.setText("Incorrect server address.");
 			}
-			if(validateNick()==true)
+			if(validateNick())
 			{
 				window = ((Stage) (((Button) event.getSource()).getScene().getWindow()));
 				try

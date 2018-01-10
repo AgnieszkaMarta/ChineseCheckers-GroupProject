@@ -33,7 +33,6 @@ public class Server
                 player = new Player(client, players.size());
                 player.start();
                 players.add(player);
-
             }
         }
         finally
@@ -80,7 +79,7 @@ public class Server
         {
             try
             {
-                while(validateNickname()==false)
+                while(!validateNickname())
                 {
                     out.println("not passed");
                     input=in.readLine();
@@ -95,7 +94,7 @@ public class Server
                         break;
                     }
                 }
-                if(passed==true)
+                if(passed)
                 {
                     nickname = nick;
                     out.println("PASSED");
@@ -134,14 +133,14 @@ public class Server
                                     {
                                         players.get(i).out.println("PLAYERR" + clientsReady);
                                     }
-                                    if (checkReady() == true) {
+                                    if (checkReady()) {
                                         startGame();
                                     }
                                     break;
                                 case "GAMEWON":
                                     for (i = 0; i < players.size(); i++)
                                     {
-                                        players.get(i).out.println("STATEGAMEWON" + getNickname());
+                                        players.get(i).out.println("STATEGAMEWON" +players.indexOf(this)+getNickname());
                                     }
                                     break;
                             }
