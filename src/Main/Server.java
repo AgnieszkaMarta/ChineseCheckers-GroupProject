@@ -12,16 +12,12 @@ import static Boards.ClientStatus.*;
 public class Server
 {
     private static ArrayList<Player> players;
-    private static ArrayList<Bot> bots;
     private static int randomClient, clientsReady=0, realPlayers;
-    private static Bot bot;
 
     public static void main(String[] args) throws Exception
     {
         Player player;
         players = new ArrayList<>();
-        bots = new ArrayList<>();
-        bot = new Bot();
         System.out.println("The server is running.");
         ServerSocket listener = new ServerSocket(6969);
         Socket client;
@@ -159,7 +155,6 @@ public class Server
                             }
 
                         }
-
                     }
                 }
             }
@@ -318,8 +313,28 @@ public class Server
         }
     }
 
-    /*public static class Bot() extends Thread
+    /*public static class Bot extends Player() extends Thread
     {
-
+	 Player(Socket socket, int clientNumber)
+        {
+            try
+            {
+                out = new PrintWriter(socket.getOutputStream(), true);
+                in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                generator = new Random();
+                System.out.println(in);
+                System.out.println(out);
+                this.socket = socket;
+                this.clientNumber = clientNumber;
+                setState(UNREADY);
+                log("New connection with player# " + clientNumber + " at " + socket);
+                nick=in.readLine();
+                log(nick);
+            }
+            catch(IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
     }*/
 }

@@ -255,6 +255,7 @@
                      </font>
                   </Label>
                   <Button fx:id="readyButton" layoutX="395.0" layoutY="44.0" mnemonicParsing="false" onMouseClicked="#setReady" prefHeight="25.0" prefWidth="60.0" text="Ready" />
+                   <Button fx:id="endOfTurnButton" layoutX="600.0" layoutY="24.0" mnemonicParsing="false" onMouseClicked="#setEndOfTurn" prefHeight="25.0" prefWidth="140.0" text="Finish my turn" />
                   <AnchorPane layoutX="137.0" layoutY="257.0" prefHeight="200.0" prefWidth="436.0" visible="false">
                      <children>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="200.0" stroke="BLACK" strokeType="INSIDE" width="436.0" />

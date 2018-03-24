@@ -35,6 +35,7 @@ public class boardController implements Initializable
 	private String message, nick="", clientNumber, playerTurn;
 	private double fX, fY, sX, sY, length, halfLength, futureLength;
 	private int i, fi, si, clientsReady, playersNumber, j, client;
+	private int move=0, jump=0, oneLength=40, jumpLength=80, betweenLength=55;
 	boolean executed, moveable;
 	private ArrayList<Color> colorArrayList;
 	private ArrayList<Polygon> polygonArrayList;
@@ -99,6 +100,9 @@ public class boardController implements Initializable
 
 	@FXML
 	private Button readyButton;
+	
+	@FXML
+	private Button endOfTurnButton;
 
 	@FXML
 	private Polyline blueGoal, brownGoal, redGoal, greenGoal, whiteGoal, yellowGoal;
@@ -232,7 +236,32 @@ public class boardController implements Initializable
 		}
 		readyButton.setDisable(true);
 	}
-
+	
+	@FXML
+	private void setEndOfTurn(MouseEvent event)
+	{
+		if(!firstCircle.equals(null)) {
+			firstCircle.setStroke(Color.BLACK);
+			firstCircle.setStrokeWidth(1);
+		}
+	//	out.println("MOVED");
+		firstCircle = null;
+		clickedCircle=null;
+		secondCircle=null;
+		move=0;
+		jump=0;
+		System.out.println("END. MY. TURN.");
+		if(checkWin())
+		{
+			out.println("STATEGAMEWON");
+		}
+		else
+		{
+			out.println("MOVEDONE");
+		}
+		state=ClientStatus.UNTURN;
+	}
+	
 	@FXML
 	private void handleCheckers(MouseEvent event)
 	{
@@ -240,15 +269,14 @@ public class boardController implements Initializable
 		clickedColor = (Color)clickedCircle.getFill();
 		if(state.equals(ClientStatus.TURN))
 		{
-			if (firstCircle == null  && clickedColor.equals(playerColor)) {
-
+			if (firstCircle == null  && clickedColor.equals(playerColor) && move==0 && jump==0) {
 				firstCircle = clickedCircle;
 				firstCircle = (Circle) event.getSource();
 				firstCircle.setStroke(Color.GREEN);
 				firstCircle.setStrokeWidth(3);
 				fX = firstCircle.getLayoutX();
 				fY = firstCircle.getLayoutY();
-			} else if (clickedCircle.equals(firstCircle)) {
+			} else if (clickedCircle.equals(firstCircle)&& move==0 && jump==0) {
 				firstCircle.setStroke(Color.BLACK);
 				firstCircle.setStrokeWidth(1);
 				firstCircle = null;
@@ -256,30 +284,54 @@ public class boardController implements Initializable
 				sX = clickedCircle.getLayoutX();
 				sY = clickedCircle.getLayoutY();
 				length = len(sX , sY, fX,fY);
-				if(length<40) {
+				if(length<oneLength && jump==0 && move==0) {
 					moveable=true;
+					move=1;
 				}
-				else if (length<57)
+				else if (length<betweenLength)
 					moveable=false;
-				else if(length <75)
+				else if(length <jumpLength) {
 					moveable=isMovementPossible(fX, fY, sX, sY, length, circleArrayList);
-
-
-				if (moveable) {
+						if(moveable) {
+							jump++;
+						}
+				}
+				else
+					moveable=false;
+				
+				
+				if (moveable) 
+				{
 					movement();
 				} else {
 					System.out.println("This move is not possible");
-					firstCircle.setStroke(Color.BLACK);
+					/*firstCircle.setStroke(Color.BLACK);
 					firstCircle.setStrokeWidth(1);
-					firstCircle = null;
+					firstCircle = null;*/
 				}
 
 			}
 		}
 	}
-
-
+	
+	
 	private boolean isMovementPossible(double x1, double y1, double x2, double y2, double length, ArrayList<Circle> circleArrayList){
+		if(move==0) {
+			for(int j=0; j<circleArrayList.size(); j++) {
+				counterColor=(Color)circleArrayList.get(j).getFill();
+				halfLength=len(circleArrayList.get(j).getLayoutX(), circleArrayList.get(j).getLayoutY(), x1, y1);
+				if(!(x1==circleArrayList.get(j).getLayoutX()&& y1==circleArrayList.get(j).getLayoutY())&& halfLength<oneLength && futureLength<length) {
+					if((!(counterColor.equals(boardColor))) && (((circleArrayList.get(j).getLayoutX()>=x1 && circleArrayList.get(j).getLayoutX()<=x2)||(circleArrayList.get(j).getLayoutX()<=x1 && circleArrayList.get(j).getLayoutX()>=x2)) && ((circleArrayList.get(j).getLayoutY()>=y1 && circleArrayList.get(j).getLayoutY()<=y2)||(circleArrayList.get(j).getLayoutY()<=y1 && circleArrayList.get(j).getLayoutY()>=y2)))){
+						return true;
+					}
+				}
+			}
+		}
+	
+		return false;
+	}	
+ 
+	/*private boolean isMovementPossible(double x1, double y1, double x2, double y2, double length, ArrayList<Circle> circleArrayList){
 		for(int j=0; j<circleArrayList.size(); j++) {
 			counterColor=(Color)circleArrayList.get(j).getFill();
 			halfLength=len(circleArrayList.get(j).getLayoutX(), circleArrayList.get(j).getLayoutY(), x1, y1);
@@ -296,8 +348,8 @@ public class boardController implements Initializable
 			}
 		}
 		return false;
-	}
-	private boolean halfMovement(double x1, double y1, double x2, double y2, double length, ArrayList<Circle> circleArrayList) {
+	}*/
+	/*private boolean halfMovement(double x1, double y1, double x2, double y2, double length, ArrayList<Circle> circleArrayList) {
 		for(int j=0; j<circleArrayList.size(); j++) {
 			counterColor=(Color)circleArrayList.get(j).getFill();
 			halfLength=len(circleArrayList.get(j).getLayoutX(), circleArrayList.get(j).getLayoutY(), x1, y1);
@@ -310,7 +362,7 @@ public class boardController implements Initializable
 			}
 		}
 		return false;
-	}
+	}*/
 	private double len(double sX, double sY, double fX, double fY) {
 		return Math.sqrt(Math.pow(sX - fX, 2) + Math.pow(sY - fY, 2));
 	}
@@ -319,14 +371,18 @@ public class boardController implements Initializable
 		moveColor = (Color) clickedCircle.getFill();
 
 		secondCircle.setFill(firstCircle.getFill());
+		secondCircle.setStroke(Color.GREEN);
+		secondCircle.setStrokeWidth(3);
 		firstCircle.setFill(moveColor);
 		firstCircle.setStroke(Color.BLACK);
 		firstCircle.setStrokeWidth(1);
 		out.println("MOVE"+secondCircle.getLayoutX()+" "+secondCircle.getLayoutY()+" "+firstCircle.getLayoutX()+" "+firstCircle.getLayoutY());
-		firstCircle = null;
+		firstCircle = secondCircle;
+		fX = firstCircle.getLayoutX();
+		fY = firstCircle.getLayoutY();
 		clickedCircle=null;
 		secondCircle=null;
-		System.out.println("END. MY. TURN.");
+	/*	System.out.println("END. MY. TURN.");
 		if(checkWin())
 		{
 			out.println("STATEGAMEWON");
@@ -335,7 +391,7 @@ public class boardController implements Initializable
 		{
 			out.println("MOVEDONE");
 		}
-		state=ClientStatus.UNTURN;
+		state=ClientStatus.UNTURN;*/
 
 	}
 
@@ -466,6 +522,11 @@ public class boardController implements Initializable
 						response=response.substring(4);
 						switch (response)
 						{
+							case "DONE":
+								firstCircle=null;
+								secondCircle=null;
+								clickedCircle=null;
+								break;
 							default:
 								fX = Double.parseDouble(response.substring(0,5));
 								fY = Double.parseDouble(response.substring(5,10));
@@ -498,7 +559,9 @@ public class boardController implements Initializable
 								break;
 						}
 
-					}
+					
+				}
+				
 				}
 				catch (IOException ex)
 				{
